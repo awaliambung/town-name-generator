@@ -1,6 +1,6 @@
 let wordPool = null;
 
-fetch('wordPool.json')
+fetch('./data/wordPool.json')
   .then(response => response.json())
   .then(data => {wordPool = data})
   .catch(error => console.error("Failed to load word pool data.", error));
