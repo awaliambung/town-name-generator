@@ -1,17 +1,17 @@
-let wordPool = null;
+let affixes = null;
 
-fetch('./data/wordPool.json')
+fetch('./data/affixes.json')
   .then(response => response.json())
-  .then(data => {wordPool = data})
+  .then(data => {affixes = data})
   .catch(error => console.error("Failed to load word pool data.", error));
 
 function generateName() {
-  if (!wordPool) {
+  if (!affixes) {
     return "Loading...";
   }
 
-  const { prefixes = [], middles = [], suffixes = [] } = wordPool;
-  return getRandomElement(prefixes) + getRandomElement(middles) + getRandomElement(suffixes);
+  const { prefixes = [], infixes = [], suffixes = [] } = affixes;
+  return getRandomElement(prefixes) + getRandomElement(infixes) + getRandomElement(suffixes);
 }
 
 function getRandomElement(arr) {
@@ -19,7 +19,7 @@ function getRandomElement(arr) {
 }
 
 document.getElementById("generateBtn")?.addEventListener("click", () => {
-  if (!wordPool) {
+  if (!affixes) {
     document.getElementById("nameDisplay").textContent = "Loading...";
     return;
   }
